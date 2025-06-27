@@ -1,0 +1,32 @@
+services:
+  - type: web
+    name: echo-api
+    runtime: python
+    env: python
+    region: oregon
+    plan: free
+    rootDir: openmemory/api
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.0
+      - key: PORT
+        value: 8765
+      - key: DATABASE_URL
+        fromDatabase:
+          name: echo-postgres
+          property: connectionString
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: USER
+        value: default
+      - key: API_KEY
+        sync: false
+
+databases:
+  - name: echo-postgres
+    databaseName: echo
+    user: echo
+    region: oregon
+    plan: free
