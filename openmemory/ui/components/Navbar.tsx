@@ -56,6 +56,10 @@ export function Navbar() {
       getFetchers: () => [statsApi.fetchStats, memoriesApi.fetchMemories],
     },
     {
+      match: /^\/homepage$/,
+      getFetchers: () => [statsApi.fetchStats, memoriesApi.fetchMemories],
+    },
+    {
       match: /^\/settings$/,
       getFetchers: () => [configApi.fetchConfig],
     },
@@ -83,42 +87,48 @@ export function Navbar() {
   };
 
   const isActive = (href: string) => {
+    if (href === "/homepage") return pathname === href || pathname === "/";
     if (href === "/") return pathname === href;
     return pathname.startsWith(href.substring(0, 5));
   };
 
-  const activeClass = "bg-zinc-800 text-white border-zinc-600";
-  const inactiveClass = "text-zinc-300";
+  const activeClass = "bg-[#1C8BF1] text-white border-[#1C8BF1]";
+  const inactiveClass = "text-[#333333] hover:bg-[#E1EAF9] hover:text-[#1C2F72] border-transparent";
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-zinc-800 bg-zinc-950/95 backdrop-blur supports-[backdrop-filter]:bg-zinc-950/60">
-      <div className="container flex h-14 items-center justify-between">
-        <Link href="/" className="flex items-center gap-2">
-                  <Image src="/logo.svg" alt="Echo" width={26} height={26} />
-        <span className="text-xl font-medium">Echo</span>
+    <header className="sticky top-0 z-50 w-full border-b border-[#E1EAF9] bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/90 shadow-sm">
+      <div className="container flex h-16 items-center justify-between px-6">
+        <Link href="/homepage" className="flex items-center gap-3">
+          <Image src="/logo.svg" alt="Echo" width={32} height={32} />
+          <span className="text-2xl font-bold text-[#1C2F72]" style={{ fontFamily: 'var(--font-merriweather)' }}>
+            Echo
+          </span>
         </Link>
-        <div className="flex items-center gap-2">
-          <Link href="/">
+        
+        <div className="flex items-center gap-3">
+          <Link href="/homepage">
             <Button
               variant="outline"
               size="sm"
-              className={`flex items-center gap-2 border-none ${
-                isActive("/") ? activeClass : inactiveClass
+              className={`flex items-center gap-2 border px-4 py-2 font-medium transition-colors ${
+                isActive("/homepage") ? activeClass : inactiveClass
               }`}
+              style={{ fontFamily: 'var(--font-inter)' }}
             >
-              <HiHome />
-              Dashboard
+              <HiHome className="h-4 w-4" />
+              Home
             </Button>
           </Link>
           <Link href="/memories">
             <Button
               variant="outline"
               size="sm"
-              className={`flex items-center gap-2 border-none ${
+              className={`flex items-center gap-2 border px-4 py-2 font-medium transition-colors ${
                 isActive("/memories") ? activeClass : inactiveClass
               }`}
+              style={{ fontFamily: 'var(--font-inter)' }}
             >
-              <HiMiniRectangleStack />
+              <HiMiniRectangleStack className="h-4 w-4" />
               Memories
             </Button>
           </Link>
@@ -126,11 +136,12 @@ export function Navbar() {
             <Button
               variant="outline"
               size="sm"
-              className={`flex items-center gap-2 border-none ${
+              className={`flex items-center gap-2 border px-4 py-2 font-medium transition-colors ${
                 isActive("/apps") ? activeClass : inactiveClass
               }`}
+              style={{ fontFamily: 'var(--font-inter)' }}
             >
-              <RiApps2AddFill />
+              <RiApps2AddFill className="h-4 w-4" />
               Apps
             </Button>
           </Link>
@@ -138,23 +149,26 @@ export function Navbar() {
             <Button
               variant="outline"
               size="sm"
-              className={`flex items-center gap-2 border-none ${
+              className={`flex items-center gap-2 border px-4 py-2 font-medium transition-colors ${
                 isActive("/settings") ? activeClass : inactiveClass
               }`}
+              style={{ fontFamily: 'var(--font-inter)' }}
             >
-              <Settings />
+              <Settings className="h-4 w-4" />
               Settings
             </Button>
           </Link>
         </div>
-        <div className="flex items-center gap-4">
+        
+        <div className="flex items-center gap-3">
           <Button
             onClick={handleRefresh}
             variant="outline"
             size="sm"
-            className="border-zinc-700/50 bg-zinc-900 hover:bg-zinc-800"
+            className="border-[#25997F] bg-white hover:bg-[#25997F] text-[#25997F] hover:text-white transition-colors px-4 py-2"
+            style={{ fontFamily: 'var(--font-inter)' }}
           >
-            <FiRefreshCcw className="transition-transform duration-300 group-hover:rotate-180" />
+            <FiRefreshCcw className="h-4 w-4 transition-transform duration-300 group-hover:rotate-180" />
             Refresh
           </Button>
           <CreateMemoryDialog />

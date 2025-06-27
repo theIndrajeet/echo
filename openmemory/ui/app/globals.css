@@ -1,59 +1,142 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Inter:wght@400;600;700&family=Noto+Sans:wght@400;600;700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  :root {
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 240 10% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 240 10% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 260 94% 59%;
-    --primary-foreground: 355.7 100% 97.3%;
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
-    --accent: 240 3.7% 15.9%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 260 94% 59%;
-    --radius: 0.5rem;
-  }
+:root {
+  --font-merriweather: 'Merriweather', serif;
+  --font-inter: 'Inter', sans-serif;
+  --font-noto-sans: 'Noto Sans', sans-serif;
+  
+  /* Echo Color Palette */
+  --color-primary-dark: #1C2F72;
+  --color-primary-blue: #1C8BF1;
+  --color-primary-light: #E1EAF9;
+  
+  --color-secondary-teal: #25997F;
+  --color-secondary-orange: #F26B22;
+  --color-secondary-yellow: #FFC930;
+  
+  --color-neutral-dark: #333333;
+  --color-neutral-warm: #F9F5EE;
+  --color-neutral-white: #FFFEF9;
+}
 
-  .dark {
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 240 10% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 240 10% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 260 94% 59%;
-    --primary-foreground: 355.7 100% 97.3%;
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
-    --accent: 240 3.7% 15.9%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 260 94% 59%;
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  font-family: var(--font-inter);
+}
+
+body {
+  color: var(--color-neutral-dark);
+  background: var(--color-neutral-white);
+  line-height: 1.6;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-merriweather);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.font-merriweather {
+  font-family: var(--font-merriweather);
+}
+
+.font-inter {
+  font-family: var(--font-inter);
+}
+
+.font-noto-sans {
+  font-family: var(--font-noto-sans);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-neutral-warm);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-primary-blue);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary-dark);
+}
+
+/* Animation classes */
+.animate-fade-slide-down {
+  animation: fadeSlideDown 0.6s ease-out;
+}
+
+@keyframes fadeSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-@layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
+/* Button hover effects */
+.btn-primary {
+  background: var(--color-primary-blue);
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background: var(--color-primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(28, 139, 241, 0.3);
+}
+
+.btn-secondary {
+  background: var(--color-secondary-teal);
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+  background: var(--color-secondary-orange);
+  transform: translateY(-2px);
+}
+
+/* Card styles */
+.card-hover {
+  transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(28, 47, 114, 0.15);
+}
+
+/* Gradient backgrounds */
+.gradient-primary {
+  background: linear-gradient(135deg, var(--color-primary-blue), var(--color-primary-dark));
+}
+
+.gradient-warm {
+  background: linear-gradient(135deg, var(--color-neutral-white), var(--color-neutral-warm), var(--color-primary-light));
 }
