@@ -2,7 +2,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
-import { ArrowRight, Brain, Zap, Shield, Users, Sparkles, Database } from "lucide-react";
+import { ArrowRight, Brain, Zap, Shield, Users, Sparkles, Database, Plug } from "lucide-react";
+import { Install } from "@/components/dashboard/Install";
 
 export default function HomePage() {
   return (
@@ -54,6 +55,24 @@ export default function HomePage() {
                   Documentation
                 </Button>
               </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* Integrations Section */}
+        <section className="px-6 py-20 bg-black/30 backdrop-blur-sm">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 text-shadow-lg" style={{ fontFamily: 'var(--font-merriweather)' }}>
+                Connect with Your Favorite AI Tools
+              </h2>
+              <p className="text-xl text-white/80 max-w-3xl mx-auto" style={{ fontFamily: 'var(--font-inter)' }}>
+                Echo integrates seamlessly with Claude, Cursor, Windsurf, and 8+ more AI assistants through MCP protocol.
+              </p>
+            </div>
+            
+            <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-8">
+              <Install />
             </div>
           </div>
         </section>
