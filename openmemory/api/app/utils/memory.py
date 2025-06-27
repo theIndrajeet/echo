@@ -1,7 +1,7 @@
 """
-Memory client utilities for OpenMemory.
+Memory client utilities for Echo.
 
-This module provides functionality to initialize and manage the Mem0 memory client
+This module provides functionality to initialize and manage the Echo memory client
 with automatic configuration management and Docker environment support.
 
 Docker Ollama Configuration:
@@ -192,13 +192,13 @@ def _parse_environment_variables(config_dict):
 
 def get_memory_client(custom_instructions: str = None):
     """
-    Get or initialize the Mem0 client.
+    Get or initialize the Echo client.
 
     Args:
         custom_instructions: Optional instructions for the memory project.
 
     Returns:
-        Initialized Mem0 client instance or None if initialization fails.
+        Initialized Echo client instance or None if initialization fails.
 
     Raises:
         Exception: If required API keys are not set or critical configuration is missing.

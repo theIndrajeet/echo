@@ -30,7 +30,7 @@ from mem0.memory.telemetry import capture_client_event, capture_event
 logger = logging.getLogger(__name__)
 
 
-class Mem0:
+class Echo:
     def __init__(
         self,
         config: Optional[dict] = None,

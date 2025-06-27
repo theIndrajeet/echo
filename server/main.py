@@ -59,7 +59,7 @@ DEFAULT_CONFIG = {
 MEMORY_INSTANCE = Memory.from_config(DEFAULT_CONFIG)
 
 app = FastAPI(
-    title="Mem0 REST APIs",
+    title="Echo REST APIs",
     description="A REST API for managing and searching memories for your AI Agents and Apps.",
     version="1.0.0",
 )
@@ -86,7 +86,7 @@ class SearchRequest(BaseModel):
     filters: Optional[Dict[str, Any]] = None
 
 
-@app.post("/configure", summary="Configure Mem0")
+@app.post("/configure", summary="Configure Echo")
 def set_config(config: Dict[str, Any]):
     """Set memory configuration."""
     global MEMORY_INSTANCE

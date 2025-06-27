@@ -103,7 +103,7 @@ export default function SettingsPage() {
         <div className="flex justify-between items-center mb-8">
           <div className="animate-fade-slide-down">
             <h1 className="text-3xl font-bold tracking-tight">Settings</h1>
-            <p className="text-muted-foreground mt-1">Manage your OpenMemory and Mem0 configuration</p>
+            <p className="text-muted-foreground mt-1">Manage your Echo and Echo configuration</p>
           </div>
           <div className="flex space-x-2">
             <AlertDialog>

@@ -13,10 +13,10 @@ from autogen.agentchat.contrib.capabilities.agent_capability import AgentCapabil
 from autogen.agentchat.contrib.text_analyzer_agent import TextAnalyzerAgent
 from termcolor import colored
 
-from mem0 import Memory
+from echo import Memory
 
 
-class Mem0Teachability(AgentCapability):
+class EchoTeachability(AgentCapability):
     def __init__(
         self,
         verbosity: Optional[int] = 0,

@@ -7,7 +7,7 @@ from concurrent.futures import ThreadPoolExecutor
 from dotenv import load_dotenv
 from tqdm import tqdm
 
-from mem0 import MemoryClient
+from echo import MemoryClient
 
 load_dotenv()
 
@@ -44,7 +44,7 @@ Generate personal memories that follow these guidelines:
 
 class MemoryADD:
     def __init__(self, data_path=None, batch_size=2, is_graph=False):
-        self.mem0_client = MemoryClient(
+        self.echo_client = MemoryClient(
             api_key=os.getenv("MEM0_API_KEY"),
             org_id=os.getenv("MEM0_ORGANIZATION_ID"),
             project_id=os.getenv("MEM0_PROJECT_ID"),

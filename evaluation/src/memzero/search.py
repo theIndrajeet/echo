@@ -10,14 +10,14 @@ from openai import OpenAI
 from prompts import ANSWER_PROMPT, ANSWER_PROMPT_GRAPH
 from tqdm import tqdm
 
-from mem0 import MemoryClient
+from echo import MemoryClient
 
 load_dotenv()
 
 
 class MemorySearch:
     def __init__(self, output_path="results.json", top_k=10, filter_memories=False, is_graph=False):
-        self.mem0_client = MemoryClient(
+        self.echo_client = MemoryClient(
             api_key=os.getenv("MEM0_API_KEY"),
             org_id=os.getenv("MEM0_ORGANIZATION_ID"),
             project_id=os.getenv("MEM0_PROJECT_ID"),

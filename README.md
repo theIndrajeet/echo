@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://github.com/mem0ai/mem0">
-    <img src="docs/images/banner-sm.png" width="800px" alt="Mem0 - The Memory Layer for Personalized AI">
+    <img src="docs/images/banner-sm.png" width="800px" alt="Echo - The Memory Layer for Personalized AI">
   </a>
 </p>
 <p align="center" style="display: flex; justify-content: center; gap: 20px; align-items: center;">
@@ -16,15 +16,15 @@
   ·
   <a href="https://mem0.dev/demo">Demo</a>
   ·
-  <a href="https://mem0.dev/openmemory">OpenMemory</a>
+  <a href="https://mem0.dev/openmemory">Echo</a>
 </p>
 
 <p align="center">
   <a href="https://mem0.dev/DiG">
-    <img src="https://dcbadge.vercel.app/api/server/6PzXDgEjG5?style=flat" alt="Mem0 Discord">
+    <img src="https://dcbadge.vercel.app/api/server/6PzXDgEjG5?style=flat" alt="Echo Discord">
   </a>
   <a href="https://pepy.tech/project/mem0ai">
-    <img src="https://img.shields.io/pypi/dm/mem0ai" alt="Mem0 PyPI - Downloads">
+    <img src="https://img.shields.io/pypi/dm/mem0ai" alt="Echo PyPI - Downloads">
   </a>
   <a href="https://github.com/mem0ai/mem0">
     <img src="https://img.shields.io/github/commit-activity/m/mem0ai/mem0?style=flat-square" alt="GitHub commit activity">
@@ -55,7 +55,7 @@
 
 # Introduction
 
-[Mem0](https://mem0.ai) ("mem-zero") enhances AI assistants and agents with an intelligent memory layer, enabling personalized AI interactions. It remembers user preferences, adapts to individual needs, and continuously learns over time—ideal for customer support chatbots, AI assistants, and autonomous systems.
+[Echo](https://mem0.ai) ("echo") enhances AI assistants and agents with an intelligent memory layer, enabling personalized AI interactions. It remembers user preferences, adapts to individual needs, and continuously learns over time—ideal for customer support chatbots, AI assistants, and autonomous systems.
 
 ### Key Features & Use Cases
 
@@ -77,7 +77,7 @@ Choose between our hosted platform or self-hosted package:
 
 Get up and running in minutes with automatic updates, analytics, and enterprise security.
 
-1. Sign up on [Mem0 Platform](https://app.mem0.ai)
+1. Sign up on [Echo Platform](https://app.mem0.ai)
 2. Embed the memory layer via SDK or API keys
 
 ### Self-Hosted (Open Source)
@@ -85,23 +85,23 @@ Get up and running in minutes with automatic updates, analytics, and enterprise 
 Install the sdk via pip:
 
 ```bash
-pip install mem0ai
+pip install echoai
 ```
 
 Install sdk via npm:
 ```bash
-npm install mem0ai
+npm install echoai
 ```
 
 ### Basic Usage
 
-Mem0 requires an LLM to function, with `gpt-4o-mini` from OpenAI as the default. However, it supports a variety of LLMs; for details, refer to our [Supported LLMs documentation](https://docs.mem0.ai/components/llms/overview).
+Echo requires an LLM to function, with `gpt-4o-mini` from OpenAI as the default. However, it supports a variety of LLMs; for details, refer to our [Supported LLMs documentation](https://docs.mem0.ai/components/llms/overview).
 
 First step is to instantiate the memory:
 
 ```python
 from openai import OpenAI
-from mem0 import Memory
+from echo import Memory
 
 openai_client = OpenAI()
 memory = Memory()
@@ -140,10 +140,10 @@ For detailed integration steps, see the [Quickstart](https://docs.mem0.ai/quicks
 
 ## 🔗 Integrations & Demos
 
-- **ChatGPT with Memory**: Personalized chat powered by Mem0 ([Live Demo](https://mem0.dev/demo))
+- **ChatGPT with Memory**: Personalized chat powered by Echo ([Live Demo](https://mem0.dev/demo))
 - **Browser Extension**: Store memories across ChatGPT, Perplexity, and Claude ([Chrome Extension](https://chromewebstore.google.com/detail/onihkkbipkfeijkadecaafbgagkhglop?utm_source=item-share-cb))
-- **Langgraph Support**: Build a customer bot with Langgraph + Mem0 ([Guide](https://docs.mem0.ai/integrations/langgraph))
-- **CrewAI Integration**: Tailor CrewAI outputs with Mem0 ([Example](https://docs.mem0.ai/integrations/crewai))
+- **Langgraph Support**: Build a customer bot with Langgraph + Echo ([Guide](https://docs.mem0.ai/integrations/langgraph))
+- **CrewAI Integration**: Tailor CrewAI outputs with Echo ([Example](https://docs.mem0.ai/integrations/crewai))
 
 ## 📚 Documentation & Support
 
@@ -156,8 +156,8 @@ For detailed integration steps, see the [Quickstart](https://docs.mem0.ai/quicks
 We now have a paper you can cite:
 
 ```bibtex
-@article{mem0,
-  title={Mem0: Building Production-Ready AI Agents with Scalable Long-Term Memory},
+@article{echo,
+  title={Echo: Building Production-Ready AI Agents with Scalable Long-Term Memory},
   author={Chhikara, Prateek and Khant, Dev and Aryan, Saket and Singh, Taranjeet and Yadav, Deshraj},
   journal={arXiv preprint arXiv:2504.19413},
   year={2025}

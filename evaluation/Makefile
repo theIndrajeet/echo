@@ -1,16 +1,16 @@
 
 # Run the experiments
-run-mem0-add:
-	python run_experiments.py --technique_type mem0 --method add
+run-echo-add:
+	python run_experiments.py --technique_type echo --method add
 
-run-mem0-search:
-	python run_experiments.py --technique_type mem0 --method search --output_folder results/ --top_k 30
+run-echo-search:
+	python run_experiments.py --technique_type echo --method search --output_folder results/ --top_k 30
 
-run-mem0-plus-add:
-	python run_experiments.py --technique_type mem0 --method add --is_graph
+run-echo-plus-add:
+	python run_experiments.py --technique_type echo --method add --is_graph
 
-run-mem0-plus-search:
-	python run_experiments.py --technique_type mem0 --method search --is_graph --output_folder results/ --top_k 30
+run-echo-plus-search:
+	python run_experiments.py --technique_type echo --method search --is_graph --output_folder results/ --top_k 30
 
 run-rag:
 	python run_experiments.py --technique_type rag --chunk_size 500 --num_chunks 1 --output_folder results/

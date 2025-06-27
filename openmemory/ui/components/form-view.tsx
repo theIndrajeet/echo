@@ -21,7 +21,7 @@ export function FormView({ settings, onChange }: FormViewProps) {
   const [showLlmApiKey, setShowLlmApiKey] = useState(false)
   const [showEmbedderApiKey, setShowEmbedderApiKey] = useState(false)
 
-  const handleOpenMemoryChange = (key: string, value: any) => {
+  const handleEchoChange = (key: string, value: any) => {
     onChange({
       ...settings,
       openmemory: {
@@ -127,11 +127,11 @@ export function FormView({ settings, onChange }: FormViewProps) {
 
   return (
     <div className="space-y-8">
-      {/* OpenMemory Settings */}
-      <Card>
-        <CardHeader>
-          <CardTitle>OpenMemory Settings</CardTitle>
-          <CardDescription>Configure your OpenMemory instance settings</CardDescription>
+              {/* Echo Settings */}
+        <Card>
+          <CardHeader>
+            <CardTitle>Echo Settings</CardTitle>
+            <CardDescription>Configure your Echo instance settings</CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
           <div className="space-y-2">
@@ -140,7 +140,7 @@ export function FormView({ settings, onChange }: FormViewProps) {
               id="custom-instructions"
               placeholder="Enter custom instructions for memory management..."
               value={settings.openmemory?.custom_instructions || ""}
-              onChange={(e) => handleOpenMemoryChange("custom_instructions", e.target.value)}
+              onChange={(e) => handleEchoChange("custom_instructions", e.target.value)}
               className="min-h-[100px]"
             />
             <p className="text-xs text-muted-foreground mt-1">

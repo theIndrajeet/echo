@@ -43,14 +43,14 @@ def api_error_handler(func):
 
 
 class MemoryClient:
-    """Client for interacting with the Mem0 API.
+    """Client for interacting with the Echo API.
 
     This class provides methods to create, retrieve, search, and delete
-    memories using the Mem0 API.
+    memories using the Echo API.
 
     Attributes:
-        api_key (str): The API key for authenticating with the Mem0 API.
-        host (str): The base URL for the Mem0 API.
+            api_key (str): The API key for authenticating with the Echo API.
+    host (str): The base URL for the Echo API.
         client (httpx.Client): The HTTP client used for making API requests.
         org_id (str, optional): Organization ID.
         project_id (str, optional): Project ID.
@@ -891,7 +891,7 @@ class MemoryClient:
 
 
 class AsyncMemoryClient:
-    """Asynchronous client for interacting with the Mem0 API.
+    """Asynchronous client for interacting with the Echo API.
 
     This class provides asynchronous versions of all MemoryClient methods.
     It uses httpx.AsyncClient for making non-blocking API requests.

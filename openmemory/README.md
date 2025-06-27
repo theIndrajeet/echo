@@ -1,8 +1,8 @@
-# OpenMemory
+# Echo
 
-OpenMemory is your personal memory layer for LLMs - private, portable, and open-source. Your memories live locally, giving you complete control over your data. Build AI applications with personalized memories while keeping your data secure.
+Echo is your personal memory layer for LLMs - private, portable, and open-source. Your memories live locally, giving you complete control over your data. Build AI applications with personalized memories while keeping your data secure.
 
-![OpenMemory](https://github.com/user-attachments/assets/3c701757-ad82-4afa-bfbe-e049c2b4320b)
+![Echo](https://github.com/user-attachments/assets/3c701757-ad82-4afa-bfbe-e049c2b4320b)
 
 ## Easy Setup
 
@@ -10,10 +10,10 @@ OpenMemory is your personal memory layer for LLMs - private, portable, and open-
 - Docker
 - OpenAI API Key
 
-You can quickly run OpenMemory by running the following command:
+You can quickly run Echo by running the following command:
 
 ```bash
-curl -sL https://raw.githubusercontent.com/mem0ai/mem0/main/openmemory/run.sh | bash
+curl -sL https://raw.githubusercontent.com/mem0ai/echo/main/openmemory/run.sh | bash
 ```
 
 You should set the `OPENAI_API_KEY` as a global environment variable:
@@ -25,7 +25,7 @@ export OPENAI_API_KEY=your_api_key
 You can also set the `OPENAI_API_KEY` as a parameter to the script:
 
 ```bash
-curl -sL https://raw.githubusercontent.com/mem0ai/mem0/main/openmemory/run.sh | OPENAI_API_KEY=your_api_key bash
+curl -sL https://raw.githubusercontent.com/mem0ai/echo/main/openmemory/run.sh | OPENAI_API_KEY=your_api_key bash
 ```
 
 ## Prerequisites
@@ -83,8 +83,8 @@ make up  # runs openmemory mcp server and ui
 ```
 
 After running these commands, you will have:
-- OpenMemory MCP server running at: http://localhost:8765 (API documentation available at http://localhost:8765/docs)
-- OpenMemory UI running at: http://localhost:3000
+- Echo MCP server running at: http://localhost:8765 (API documentation available at http://localhost:8765/docs)
+- Echo UI running at: http://localhost:3000
 
 #### UI not working on `localhost:3000`?
 
@@ -98,7 +98,7 @@ pnpm dev
 
 ### MCP Client Setup
 
-Use the following one step command to configure OpenMemory Local MCP to a client. The general command format is as follows:
+Use the following one step command to configure Echo Local MCP to a client. The general command format is as follows:
 
 ```bash
 npx @openmemory/install local http://localhost:8765/mcp/<client-name>/sse/<user-id> --client <client-name>
@@ -131,4 +131,4 @@ How to contribute:
 4. Push to the branch (`git push origin openmemory/feature/amazing-feature`)
 5. Open a Pull Request
 
-Join us in building the future of AI memory management! Your contributions help make OpenMemory better for everyone.
+Join us in building the future of AI memory management! Your contributions help make Echo better for everyone.

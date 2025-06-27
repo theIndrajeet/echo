@@ -1,8 +1,8 @@
 """
-MCP Server for OpenMemory with resilient memory client handling.
+MCP Server for Echo with resilient memory client handling.
 
 This module implements an MCP (Model Context Protocol) server that provides
-memory operations for OpenMemory. The memory client is initialized lazily
+memory operations for Echo. The memory client is initialized lazily
 to prevent server crashes when external dependencies (like Ollama) are
 unavailable. If the memory client cannot be initialized, the server will
 continue running with limited functionality and appropriate error messages.
@@ -81,7 +81,7 @@ async def add_memories(text: str) -> str:
 
             # Check if app is active
             if not app.is_active:
-                return f"Error: App {app.name} is currently paused on OpenMemory. Cannot create new memories."
+                return f"Error: App {app.name} is currently paused on Echo. Cannot create new memories."
 
             response = memory_client.add(text,
                                          user_id=uid,

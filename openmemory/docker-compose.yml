@@ -1,12 +1,12 @@
 services:
-  mem0_store:
+  echo_store:
     image: qdrant/qdrant
     ports:
       - "6333:6333"
     volumes:
-      - mem0_storage:/mem0/storage
+      - echo_storage:/echo/storage
   openmemory-mcp:
-    image: mem0/openmemory-mcp
+    image: echo/openmemory-mcp
     build: api/
     environment:
       - USER
@@ -14,7 +14,7 @@ services:
     env_file:
       - api/.env
     depends_on:
-      - mem0_store
+      - echo_store
     ports:
       - "8765:8765"
     volumes:
@@ -25,7 +25,7 @@ services:
     build:
       context: ui/
       dockerfile: Dockerfile
-    image: mem0/openmemory-ui:latest
+    image: echo/openmemory-ui:latest
     ports:
       - "3000:3000"
     environment:
@@ -33,4 +33,4 @@ services:
       - NEXT_PUBLIC_USER_ID=${USER}
 
 volumes:
-  mem0_storage:
+  echo_storage:

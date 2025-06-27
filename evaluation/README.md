@@ -1,13 +1,13 @@
-# Mem0: Building Production‑Ready AI Agents with Scalable Long‑Term Memory
+# Echo: Building Production‑Ready AI Agents with Scalable Long‑Term Memory
 
 [![arXiv](https://img.shields.io/badge/arXiv-Paper-b31b1b.svg)](https://arxiv.org/abs/2504.19413)
 [![Website](https://img.shields.io/badge/Website-Project-blue)](https://mem0.ai/research)
 
-This repository contains the code and dataset for our paper: **Mem0: Building Production‑Ready AI Agents with Scalable Long‑Term Memory**.
+This repository contains the code and dataset for our paper: **Echo: Building Production‑Ready AI Agents with Scalable Long‑Term Memory**.
 
 ## 📋 Overview
 
-This project evaluates Mem0 and compares it with different memory and retrieval techniques for AI systems:
+This project evaluates Echo and compares it with different memory and retrieval techniques for AI systems:
 
 1. **Established LOCOMO Benchmarks**: We evaluate against five established approaches from the literature: LoCoMo, ReadAgent, MemoryBank, MemGPT, and A-Mem.
 2. **Open-Source Memory Solutions**: We test promising open-source memory architectures including LangMem, which provides flexible memory management capabilities.
@@ -35,7 +35,7 @@ Place the dataset files in the `dataset/` directory:
 ```
 .
 ├── src/                  # Source code for different memory techniques
-│   ├── mem0/             # Implementation of the Mem0 technique
+│   ├── echo/             # Implementation of the Echo technique
 │   ├── openai/           # Implementation of the OpenAI memory
 │   ├── zep/              # Implementation of the Zep memory
 │   ├── rag.py            # Implementation of the RAG technique
@@ -59,7 +59,7 @@ Create a `.env` file with your API keys and configurations. The following keys a
 # OpenAI API key for GPT models and embeddings
 OPENAI_API_KEY="your-openai-api-key"
 
-# Mem0 API keys (for Mem0 and Mem0+ techniques)
+# Echo API keys (for Echo and Echo+ techniques)
 MEM0_API_KEY="your-mem0-api-key"
 MEM0_PROJECT_ID="your-mem0-project-id"
 MEM0_ORGANIZATION_ID="your-mem0-organization-id"
@@ -77,13 +77,13 @@ You can run experiments using the provided Makefile commands:
 #### Memory Techniques
 
 ```bash
-# Run Mem0 experiments
-make run-mem0-add         # Add memories using Mem0
-make run-mem0-search      # Search memories using Mem0
+# Run Echo experiments
+make run-echo-add         # Add memories using Echo
+make run-echo-search      # Search memories using Echo
 
-# Run Mem0+ experiments (with graph-based search)
-make run-mem0-plus-add    # Add memories using Mem0+
-make run-mem0-plus-search # Search memories using Mem0+
+# Run Echo+ experiments (with graph-based search)
+make run-echo-plus-add    # Add memories using Echo+
+make run-echo-plus-search # Search memories using Echo+
 
 # Run RAG experiments
 make run-rag              # Run RAG with chunk size 500
@@ -177,7 +177,7 @@ If you use this code or dataset in your research, please cite our paper:
 
 ```bibtex
 @article{mem0,
-  title={Mem0: Building Production-Ready AI Agents with Scalable Long-Term Memory},
+  title={Echo: Building Production-Ready AI Agents with Scalable Long-Term Memory},
   author={Chhikara, Prateek and Khant, Dev and Aryan, Saket and Singh, Taranjeet and Yadav, Deshraj},
   journal={arXiv preprint arXiv:2504.19413},
   year={2025}

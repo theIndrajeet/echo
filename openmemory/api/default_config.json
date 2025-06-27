@@ -1,5 +1,5 @@
 {
-    "mem0": {
+    "echo": {
         "llm": {
             "provider": "openai",
             "config": {

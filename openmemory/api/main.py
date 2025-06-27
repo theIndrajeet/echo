@@ -9,7 +9,7 @@ from app.models import User, App
 from uuid import uuid4
 from app.config import USER_ID, DEFAULT_APP_ID
 
-app = FastAPI(title="OpenMemory API")
+app = FastAPI(title="Echo API")
 
 app.add_middleware(
     CORSMiddleware,

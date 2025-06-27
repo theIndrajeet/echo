@@ -30,16 +30,16 @@ class EmbedderProvider(BaseModel):
     provider: str = Field(..., description="Embedder provider name")
     config: EmbedderConfig
 
-class OpenMemoryConfig(BaseModel):
+class EchoConfig(BaseModel):
     custom_instructions: Optional[str] = Field(None, description="Custom instructions for memory management and fact extraction")
 
-class Mem0Config(BaseModel):
+class EchoMemoryConfig(BaseModel):
     llm: Optional[LLMProvider] = None
     embedder: Optional[EmbedderProvider] = None
 
 class ConfigSchema(BaseModel):
-    openmemory: Optional[OpenMemoryConfig] = None
-    mem0: Mem0Config
+    openmemory: Optional[EchoConfig] = None
+    echo: EchoMemoryConfig
 
 def get_default_configuration():
     """Get the default configuration with sensible defaults for LLM and embedder."""
@@ -47,7 +47,7 @@ def get_default_configuration():
         "openmemory": {
             "custom_instructions": None
         },
-        "mem0": {
+        "echo": {
             "llm": {
                 "provider": "openai",
                 "config": {
@@ -88,16 +88,16 @@ def get_config_from_db(db: Session, key: str = "main"):
     if "openmemory" not in config_value:
         config_value["openmemory"] = default_config["openmemory"]
     
-    if "mem0" not in config_value:
-        config_value["mem0"] = default_config["mem0"]
+    if "echo" not in config_value:
+        config_value["echo"] = default_config["echo"]
     else:
         # Ensure LLM config exists with defaults
-        if "llm" not in config_value["mem0"] or config_value["mem0"]["llm"] is None:
-            config_value["mem0"]["llm"] = default_config["mem0"]["llm"]
+            if "llm" not in config_value["echo"] or config_value["echo"]["llm"] is None:
+        config_value["echo"]["llm"] = default_config["echo"]["llm"]
         
         # Ensure embedder config exists with defaults
-        if "embedder" not in config_value["mem0"] or config_value["mem0"]["embedder"] is None:
-            config_value["mem0"]["embedder"] = default_config["mem0"]["embedder"]
+        if "embedder" not in config_value["echo"] or config_value["echo"]["embedder"] is None:
+            config_value["echo"]["embedder"] = default_config["echo"]["embedder"]
     
     # Save the updated config back to database if it was modified
     if config_value != config.value:
@@ -142,8 +142,8 @@ async def update_configuration(config: ConfigSchema, db: Session = Depends(get_d
             updated_config["openmemory"] = {}
         updated_config["openmemory"].update(config.openmemory.dict(exclude_none=True))
     
-    # Update mem0 settings
-    updated_config["mem0"] = config.mem0.dict(exclude_none=True)
+    # Update echo settings
+    updated_config["echo"] = config.echo.dict(exclude_none=True)
     
     # Save the configuration to database
     save_config_to_db(db, updated_config)
@@ -167,38 +167,38 @@ async def reset_configuration(db: Session = Depends(get_db)):
             detail=f"Failed to reset configuration: {str(e)}"
         )
 
-@router.get("/mem0/llm", response_model=LLMProvider)
+@router.get("/echo/llm", response_model=LLMProvider)
 async def get_llm_configuration(db: Session = Depends(get_db)):
     """Get only the LLM configuration."""
     config = get_config_from_db(db)
-    llm_config = config.get("mem0", {}).get("llm", {})
+    llm_config = config.get("echo", {}).get("llm", {})
     return llm_config
 
-@router.put("/mem0/llm", response_model=LLMProvider)
+@router.put("/echo/llm", response_model=LLMProvider)
 async def update_llm_configuration(llm_config: LLMProvider, db: Session = Depends(get_db)):
     """Update only the LLM configuration."""
     current_config = get_config_from_db(db)
     
-    # Ensure mem0 key exists
-    if "mem0" not in current_config:
-        current_config["mem0"] = {}
-    
+        # Ensure echo key exists
+    if "echo" not in current_config:
+        current_config["echo"] = {}
+
     # Update the LLM configuration
-    current_config["mem0"]["llm"] = llm_config.dict(exclude_none=True)
+    current_config["echo"]["llm"] = llm_config.dict(exclude_none=True)
     
     # Save the configuration to database
     save_config_to_db(db, current_config)
     reset_memory_client()
-    return current_config["mem0"]["llm"]
+    return current_config["echo"]["llm"]
 
-@router.get("/mem0/embedder", response_model=EmbedderProvider)
+@router.get("/echo/embedder", response_model=EmbedderProvider)
 async def get_embedder_configuration(db: Session = Depends(get_db)):
     """Get only the Embedder configuration."""
     config = get_config_from_db(db)
-    embedder_config = config.get("mem0", {}).get("embedder", {})
+    embedder_config = config.get("echo", {}).get("embedder", {})
     return embedder_config
 
-@router.put("/mem0/embedder", response_model=EmbedderProvider)
+@router.put("/echo/embedder", response_model=EmbedderProvider)
 async def update_embedder_configuration(embedder_config: EmbedderProvider, db: Session = Depends(get_db)):
     """Update only the Embedder configuration."""
     current_config = get_config_from_db(db)
@@ -213,25 +213,25 @@ async def update_embedder_configuration(embedder_config: EmbedderProvider, db: S
     # Save the configuration to database
     save_config_to_db(db, current_config)
     reset_memory_client()
-    return current_config["mem0"]["embedder"]
+    return current_config["echo"]["embedder"]
 
-@router.get("/openmemory", response_model=OpenMemoryConfig)
+@router.get("/openmemory", response_model=EchoConfig)
 async def get_openmemory_configuration(db: Session = Depends(get_db)):
-    """Get only the OpenMemory configuration."""
+    """Get only the Echo configuration."""
     config = get_config_from_db(db)
     openmemory_config = config.get("openmemory", {})
     return openmemory_config
 
-@router.put("/openmemory", response_model=OpenMemoryConfig)
-async def update_openmemory_configuration(openmemory_config: OpenMemoryConfig, db: Session = Depends(get_db)):
-    """Update only the OpenMemory configuration."""
+@router.put("/openmemory", response_model=EchoConfig)
+async def update_openmemory_configuration(openmemory_config: EchoConfig, db: Session = Depends(get_db)):
+    """Update only the Echo configuration."""
     current_config = get_config_from_db(db)
     
     # Ensure openmemory key exists
     if "openmemory" not in current_config:
         current_config["openmemory"] = {}
     
-    # Update the OpenMemory configuration
+    # Update the Echo configuration
     current_config["openmemory"].update(openmemory_config.dict(exclude_none=True))
     
     # Save the configuration to database

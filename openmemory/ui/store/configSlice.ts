@@ -24,18 +24,18 @@ export interface EmbedderProvider {
   config: EmbedderConfig;
 }
 
-export interface Mem0Config {
+export interface EchoConfig {
   llm?: LLMProvider;
   embedder?: EmbedderProvider;
 }
 
-export interface OpenMemoryConfig {
+export interface EchoMemoryConfig {
   custom_instructions?: string | null;
 }
 
 export interface ConfigState {
-  openmemory: OpenMemoryConfig;
-  mem0: Mem0Config;
+  openmemory: EchoMemoryConfig;
+  echo: EchoConfig;
   status: 'idle' | 'loading' | 'succeeded' | 'failed';
   error: string | null;
 }
@@ -74,11 +74,11 @@ const configSlice = createSlice({
       state.status = 'loading';
       state.error = null;
     },
-    setConfigSuccess: (state, action: PayloadAction<{ openmemory?: OpenMemoryConfig; mem0: Mem0Config }>) => {
+    setConfigSuccess: (state, action: PayloadAction<{ openmemory?: EchoMemoryConfig; echo: EchoConfig }>) => {
       if (action.payload.openmemory) {
         state.openmemory = action.payload.openmemory;
       }
-      state.mem0 = action.payload.mem0;
+              state.echo = action.payload.echo;
       state.status = 'succeeded';
       state.error = null;
     },
@@ -86,7 +86,7 @@ const configSlice = createSlice({
       state.status = 'failed';
       state.error = action.payload;
     },
-    updateOpenMemory: (state, action: PayloadAction<OpenMemoryConfig>) => {
+    updateOpenMemory: (state, action: PayloadAction<EchoMemoryConfig>) => {
       state.openmemory = action.payload;
     },
     updateLLM: (state, action: PayloadAction<LLMProvider>) => {
@@ -95,7 +95,7 @@ const configSlice = createSlice({
     updateEmbedder: (state, action: PayloadAction<EmbedderProvider>) => {
       state.mem0.embedder = action.payload;
     },
-    updateMem0Config: (state, action: PayloadAction<Mem0Config>) => {
+    updateEchoConfig: (state, action: PayloadAction<EchoConfig>) => {
       state.mem0 = action.payload;
     },
   },
