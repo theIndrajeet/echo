@@ -23,61 +23,73 @@ export function AppCard({ app }: AppCardProps) {
   const isActive = app.is_active;
 
   return (
-    <Card className="bg-zinc-900 text-white border-zinc-800">
+    <Card className="bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 transition-all duration-300 hover:scale-105 group">
       <CardHeader className="pb-2">
-        <div className="flex items-center gap-1">
-          <div className="relative z-10 rounded-full overflow-hidden bg-[#2a2a2a] w-6 h-6 flex items-center justify-center flex-shrink-0">
+        <div className="flex items-center gap-3">
+          <div className="relative z-10 rounded-full overflow-hidden bg-white/20 backdrop-blur-sm w-12 h-12 flex items-center justify-center flex-shrink-0 border border-white/20 group-hover:bg-white/30 transition-all duration-300">
             {appConfig.iconImage ? (
-              <div className="w-6 h-6 rounded-full bg-zinc-700 flex items-center justify-center overflow-hidden">
+              <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center overflow-hidden">
                 <Image
                   src={appConfig.iconImage}
                   alt={appConfig.name}
-                  width={28}
-                  height={28}
+                  width={32}
+                  height={32}
                 />
               </div>
             ) : (
-              <div className="w-6 h-6 flex items-center justify-center">
+              <div className="w-8 h-8 flex items-center justify-center text-[#FFC930]">
                 {appConfig.icon}
               </div>
             )}
           </div>
-          <h2 className="text-xl font-semibold">{appConfig.name}</h2>
+          <h2 className="text-xl font-semibold text-white group-hover:text-[#FFC930] transition-colors duration-300" style={{ fontFamily: 'var(--font-merriweather)' }}>
+            {appConfig.name}
+          </h2>
         </div>
       </CardHeader>
+      
       <CardContent className="pb-4 my-1">
-        <div className="grid grid-cols-2 gap-4">
-          <div>
-            <p className="text-zinc-400 text-sm mb-1">Memories Created</p>
-            <p className="text-xl font-medium">
-              {app.total_memories_created.toLocaleString()} Memories
+        <div className="grid grid-cols-1 gap-4">
+          <div className="bg-white/5 rounded-lg p-3 border border-white/10">
+            <p className="text-white/70 text-sm mb-1" style={{ fontFamily: 'var(--font-inter)' }}>
+              Memories Created
+            </p>
+            <p className="text-2xl font-bold text-white" style={{ fontFamily: 'var(--font-inter)' }}>
+              {app.total_memories_created.toLocaleString()}
             </p>
           </div>
-          <div>
-            <p className="text-zinc-400 text-sm mb-1">Memories Accessed</p>
-            <p className="text-xl font-medium">
-              {app.total_memories_accessed.toLocaleString()} Memories
+          <div className="bg-white/5 rounded-lg p-3 border border-white/10">
+            <p className="text-white/70 text-sm mb-1" style={{ fontFamily: 'var(--font-inter)' }}>
+              Memories Accessed
+            </p>
+            <p className="text-2xl font-bold text-white" style={{ fontFamily: 'var(--font-inter)' }}>
+              {app.total_memories_accessed.toLocaleString()}
             </p>
           </div>
         </div>
       </CardContent>
-      <CardFooter className="border-t border-zinc-800 p-0 px-6 py-2 flex justify-between items-center">
+      
+      <CardFooter className="border-t border-white/20 p-0 px-6 py-4 flex justify-between items-center">
         <div
           className={`${
             isActive
-              ? "bg-green-800 text-white hover:bg-green-500/20"
-              : "bg-red-500/20 text-red-400 hover:bg-red-500/20"
-          } rounded-lg px-2 py-0.5 flex items-center text-sm`}
+              ? "bg-[#25997F]/20 text-[#25997F] border border-[#25997F]/30"
+              : "bg-[#F26B22]/20 text-[#F26B22] border border-[#F26B22]/30"
+          } rounded-lg px-3 py-1.5 flex items-center text-sm font-medium backdrop-blur-sm`}
+          style={{ fontFamily: 'var(--font-inter)' }}
         >
-          <span className="h-2 w-2 my-auto mr-1 rounded-full inline-block bg-current"></span>
+          <span className="h-2 w-2 my-auto mr-2 rounded-full inline-block bg-current animate-pulse"></span>
           {isActive ? "Active" : "Inactive"}
         </div>
-        <div
+        
+        <button
           onClick={() => router.push(`/apps/${app.id}`)}
-          className="border hover:cursor-pointer border-zinc-700 bg-zinc-950 flex items-center px-3 py-1 text-sm rounded-lg text-white p-0 hover:bg-zinc-950/50 hover:text-white"
+          className="border border-white/30 bg-white/10 backdrop-blur-sm flex items-center px-4 py-2 text-sm rounded-lg text-white hover:bg-white/20 hover:border-[#FFC930]/50 hover:text-[#FFC930] transition-all duration-300 font-medium"
+          style={{ fontFamily: 'var(--font-inter)' }}
         >
-          View Details <ArrowRight className="ml-2 h-4 w-4" />
-        </div>
+          View Details 
+          <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
+        </button>
       </CardFooter>
     </Card>
   );

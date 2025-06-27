@@ -22,7 +22,7 @@ export function AppGrid() {
 
   if (isLoading) {
     return (
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {[...Array(3)].map((_, i) => (
           <AppCardSkeleton key={i} />
         ))}
@@ -32,16 +32,29 @@ export function AppGrid() {
 
   if (apps.length === 0) {
     return (
-      <div className="text-center text-zinc-500 py-8">
-        No apps found matching your filters
+      <div className="text-center py-12">
+        <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-8 max-w-md mx-auto">
+          <h3 className="text-xl font-semibold text-white mb-2" style={{ fontFamily: 'var(--font-merriweather)' }}>
+            No Apps Found
+          </h3>
+          <p className="text-white/70" style={{ fontFamily: 'var(--font-inter)' }}>
+            No applications match your current filters. Try adjusting your search criteria.
+          </p>
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-      {apps.map((app) => (
-        <AppCard key={app.id} app={app} />
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {apps.map((app, index) => (
+        <div 
+          key={app.id} 
+          className="animate-fade-slide-up"
+          style={{ animationDelay: `${index * 100}ms` }}
+        >
+          <AppCard app={app} />
+        </div>
       ))}
     </div>
   );

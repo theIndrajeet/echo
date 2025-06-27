@@ -107,13 +107,13 @@ export function MemoryTable() {
   };
 
   return (
-    <div className="rounded-md border">
-      <Table className="">
+    <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl overflow-hidden">
+      <Table>
         <TableHeader>
-          <TableRow className="bg-zinc-800 hover:bg-zinc-800">
-            <TableHead className="w-[50px] pl-4">
+          <TableRow className="bg-white/10 backdrop-blur-sm hover:bg-white/15 border-white/20">
+            <TableHead className="w-[50px] pl-4 text-white">
               <Checkbox
-                className="data-[state=checked]:border-primary border-zinc-500/50"
+                className="data-[state=checked]:border-white border-white/40 data-[state=checked]:bg-white/20"
                 checked={isAllSelected}
                 data-state={
                   isPartiallySelected
@@ -125,31 +125,31 @@ export function MemoryTable() {
                 onCheckedChange={handleSelectAll}
               />
             </TableHead>
-            <TableHead className="border-zinc-700">
+            <TableHead className="border-white/20 text-white font-semibold" style={{ fontFamily: 'var(--font-inter)' }}>
               <div className="flex items-center min-w-[600px]">
-                <HiMiniRectangleStack className="mr-1" />
+                <HiMiniRectangleStack className="mr-2 text-[#FFC930]" />
                 Memory
               </div>
             </TableHead>
-            <TableHead className="border-zinc-700">
+            <TableHead className="border-white/20 text-white font-semibold" style={{ fontFamily: 'var(--font-inter)' }}>
               <div className="flex items-center">
-                <PiSwatches className="mr-1" size={15} />
+                <PiSwatches className="mr-2 text-[#25997F]" size={15} />
                 Categories
               </div>
             </TableHead>
-            <TableHead className="w-[140px] border-zinc-700">
+            <TableHead className="w-[140px] border-white/20 text-white font-semibold" style={{ fontFamily: 'var(--font-inter)' }}>
               <div className="flex items-center">
-                <GoPackage className="mr-1" />
+                <GoPackage className="mr-2 text-[#F26B22]" />
                 Source App
               </div>
             </TableHead>
-            <TableHead className="w-[140px] border-zinc-700">
+            <TableHead className="w-[140px] border-white/20 text-white font-semibold" style={{ fontFamily: 'var(--font-inter)' }}>
               <div className="flex items-center w-full justify-center">
-                <CiCalendar className="mr-1" size={16} />
+                <CiCalendar className="mr-2 text-[#1C8BF1]" size={16} />
                 Created On
               </div>
             </TableHead>
-            <TableHead className="text-right border-zinc-700 flex justify-center">
+            <TableHead className="text-right border-white/20 flex justify-center text-white">
               <div className="flex items-center justify-end">
                 <MoreHorizontal className="h-4 w-4 mr-2" />
               </div>
@@ -157,43 +157,46 @@ export function MemoryTable() {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {memories.map((memory) => (
+          {memories.map((memory, index) => (
             <TableRow
               key={memory.id}
-              className={`hover:bg-zinc-900/50 ${
+              className={`hover:bg-white/15 transition-all duration-300 border-white/10 ${
                 memory.state === "paused" || memory.state === "archived"
-                  ? "text-zinc-400"
-                  : ""
-              } ${isLoading ? "animate-pulse opacity-50" : ""}`}
+                  ? "text-white/60"
+                  : "text-white"
+              } ${isLoading ? "animate-pulse opacity-50" : ""} ${
+                index % 2 === 0 ? "bg-white/5" : "bg-transparent"
+              }`}
             >
               <TableCell className="pl-4">
                 <Checkbox
-                  className="data-[state=checked]:border-primary border-zinc-500/50"
+                  className="data-[state=checked]:border-white border-white/40 data-[state=checked]:bg-white/20"
                   checked={selectedMemoryIds.includes(memory.id)}
                   onCheckedChange={(checked) =>
                     handleSelectMemory(memory.id, checked as boolean)
                   }
                 />
               </TableCell>
-              <TableCell className="">
+              <TableCell>
                 {memory.state === "paused" || memory.state === "archived" ? (
                   <TooltipProvider>
                     <Tooltip delayDuration={0}>
                       <TooltipTrigger asChild>
                         <div
                           onClick={() => handleMemoryClick(memory.id)}
-                          className={`font-medium ${
+                          className={`font-medium cursor-pointer transition-all duration-300 hover:text-[#FFC930] ${
                             memory.state === "paused" ||
                             memory.state === "archived"
-                              ? "text-zinc-400"
+                              ? "text-white/50"
                               : "text-white"
-                          } cursor-pointer`}
+                          }`}
+                          style={{ fontFamily: 'var(--font-inter)' }}
                         >
                           {memory.memory}
                         </div>
                       </TooltipTrigger>
-                      <TooltipContent>
-                        <p>
+                      <TooltipContent className="bg-white/90 backdrop-blur-sm border border-white/20">
+                        <p className="text-[#1C2F72]">
                           This memory is{" "}
                           <span className="font-bold">
                             {memory.state === "paused" ? "paused" : "archived"}
@@ -206,13 +209,14 @@ export function MemoryTable() {
                 ) : (
                   <div
                     onClick={() => handleMemoryClick(memory.id)}
-                    className={`font-medium text-white cursor-pointer`}
+                    className="font-medium text-white cursor-pointer transition-all duration-300 hover:text-[#FFC930]"
+                    style={{ fontFamily: 'var(--font-inter)' }}
                   >
                     {memory.memory}
                   </div>
                 )}
               </TableCell>
-              <TableCell className="">
+              <TableCell>
                 <div className="flex flex-wrap gap-1">
                   <Categories
                     categories={memory.categories}
@@ -226,22 +230,26 @@ export function MemoryTable() {
               <TableCell className="w-[140px] text-center">
                 <SourceApp source={memory.app_name} />
               </TableCell>
-              <TableCell className="w-[140px] text-center">
+              <TableCell className="w-[140px] text-center text-white/80" style={{ fontFamily: 'var(--font-inter)' }}>
                 {formatDate(memory.created_at)}
               </TableCell>
               <TableCell className="text-right flex justify-center">
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
-                    <Button variant="ghost" size="icon" className="h-8 w-8">
+                    <Button 
+                      variant="ghost" 
+                      size="icon" 
+                      className="h-8 w-8 text-white hover:bg-white/20 hover:text-[#FFC930] transition-all duration-300"
+                    >
                       <MoreHorizontal className="h-4 w-4" />
                     </Button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent
                     align="end"
-                    className="bg-zinc-900 border-zinc-800"
+                    className="bg-white/90 backdrop-blur-sm border border-white/20"
                   >
                     <DropdownMenuItem
-                      className="cursor-pointer"
+                      className="cursor-pointer text-[#1C2F72] hover:bg-[#E1EAF9] focus:bg-[#E1EAF9]"
                       onClick={() => {
                         const newState =
                           memory.state === "active" ? "paused" : "active";
@@ -261,7 +269,7 @@ export function MemoryTable() {
                       )}
                     </DropdownMenuItem>
                     <DropdownMenuItem
-                      className="cursor-pointer"
+                      className="cursor-pointer text-[#1C2F72] hover:bg-[#E1EAF9] focus:bg-[#E1EAF9]"
                       onClick={() => {
                         const newState =
                           memory.state === "active" ? "archived" : "active";
@@ -276,15 +284,15 @@ export function MemoryTable() {
                       )}
                     </DropdownMenuItem>
                     <DropdownMenuItem
-                      className="cursor-pointer"
+                      className="cursor-pointer text-[#1C2F72] hover:bg-[#E1EAF9] focus:bg-[#E1EAF9]"
                       onClick={() => handleEditMemory(memory.id, memory.memory)}
                     >
                       <Edit className="mr-2 h-4 w-4" />
                       Edit
                     </DropdownMenuItem>
-                    <DropdownMenuSeparator />
+                    <DropdownMenuSeparator className="bg-white/20" />
                     <DropdownMenuItem
-                      className="cursor-pointer text-red-500 focus:text-red-500"
+                      className="cursor-pointer text-[#F26B22] focus:text-[#F26B22] hover:bg-red-50 focus:bg-red-50"
                       onClick={() => handleDeleteMemory(memory.id)}
                     >
                       <Trash2 className="mr-2 h-4 w-4" />

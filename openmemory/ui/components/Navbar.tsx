@@ -92,25 +92,37 @@ export function Navbar() {
     return pathname.startsWith(href.substring(0, 5));
   };
 
-  const activeClass = "bg-[#1C8BF1] text-white border-[#1C8BF1]";
-  const inactiveClass = "text-[#333333] hover:bg-[#E1EAF9] hover:text-[#1C2F72] border-transparent";
+  const activeClass = "bg-white/30 text-white border-white/40 shadow-lg backdrop-blur-sm";
+  const inactiveClass = "text-white/80 hover:bg-white/20 hover:text-white border-white/20 backdrop-blur-sm";
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-[#E1EAF9] bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/90 shadow-sm">
+    <header className="sticky top-0 z-50 w-full border-b border-white/20 bg-white/10 backdrop-blur-md supports-[backdrop-filter]:bg-white/10">
       <div className="container flex h-16 items-center justify-between px-6">
-        <Link href="/homepage" className="flex items-center gap-3">
-          <Image src="/logo.svg" alt="Echo" width={32} height={32} />
-          <span className="text-2xl font-bold text-[#1C2F72]" style={{ fontFamily: 'var(--font-merriweather)' }}>
+        <Link href="/homepage" className="flex items-center gap-3 group">
+          <div className="relative">
+            <Image 
+              src="/logo.svg" 
+              alt="Echo" 
+              width={32} 
+              height={32} 
+              className="transition-transform duration-300 group-hover:scale-110" 
+            />
+            <div className="absolute inset-0 bg-[#FFC930]/20 rounded-full blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          </div>
+          <span 
+            className="text-2xl font-bold text-white group-hover:text-[#FFC930] transition-colors duration-300" 
+            style={{ fontFamily: 'var(--font-merriweather)' }}
+          >
             Echo
           </span>
         </Link>
         
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2">
           <Link href="/homepage">
             <Button
               variant="outline"
               size="sm"
-              className={`flex items-center gap-2 border px-4 py-2 font-medium transition-colors ${
+              className={`flex items-center gap-2 border px-4 py-2 font-medium transition-all duration-300 hover:scale-105 ${
                 isActive("/homepage") ? activeClass : inactiveClass
               }`}
               style={{ fontFamily: 'var(--font-inter)' }}
@@ -123,7 +135,7 @@ export function Navbar() {
             <Button
               variant="outline"
               size="sm"
-              className={`flex items-center gap-2 border px-4 py-2 font-medium transition-colors ${
+              className={`flex items-center gap-2 border px-4 py-2 font-medium transition-all duration-300 hover:scale-105 ${
                 isActive("/memories") ? activeClass : inactiveClass
               }`}
               style={{ fontFamily: 'var(--font-inter)' }}
@@ -136,7 +148,7 @@ export function Navbar() {
             <Button
               variant="outline"
               size="sm"
-              className={`flex items-center gap-2 border px-4 py-2 font-medium transition-colors ${
+              className={`flex items-center gap-2 border px-4 py-2 font-medium transition-all duration-300 hover:scale-105 ${
                 isActive("/apps") ? activeClass : inactiveClass
               }`}
               style={{ fontFamily: 'var(--font-inter)' }}
@@ -149,7 +161,7 @@ export function Navbar() {
             <Button
               variant="outline"
               size="sm"
-              className={`flex items-center gap-2 border px-4 py-2 font-medium transition-colors ${
+              className={`flex items-center gap-2 border px-4 py-2 font-medium transition-all duration-300 hover:scale-105 ${
                 isActive("/settings") ? activeClass : inactiveClass
               }`}
               style={{ fontFamily: 'var(--font-inter)' }}
@@ -165,7 +177,7 @@ export function Navbar() {
             onClick={handleRefresh}
             variant="outline"
             size="sm"
-            className="border-[#25997F] bg-white hover:bg-[#25997F] text-[#25997F] hover:text-white transition-colors px-4 py-2"
+            className="border-white/30 bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white hover:text-[#FFC930] transition-all duration-300 px-4 py-2 hover:scale-105 group"
             style={{ fontFamily: 'var(--font-inter)' }}
           >
             <FiRefreshCcw className="h-4 w-4 transition-transform duration-300 group-hover:rotate-180" />
