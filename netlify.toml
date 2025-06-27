@@ -1,0 +1,35 @@
+[build]
+  # Base directory - where your frontend package.json is located
+  base = "openmemory/ui"
+  
+  # Build command - builds the Next.js application
+  command = "npm run build"
+  
+  # Publish directory - where the built files are located (relative to base)
+  publish = ".next"
+
+[build.environment]
+  # Node.js version for build
+  NODE_VERSION = "18"
+  
+  # Install with legacy peer deps (as we used earlier)
+  NPM_FLAGS = "--legacy-peer-deps"
+
+# Next.js specific settings
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+# Headers for security and performance
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+# Redirects for SPA routing
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
