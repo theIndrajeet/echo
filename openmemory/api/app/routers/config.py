@@ -92,8 +92,8 @@ def get_config_from_db(db: Session, key: str = "main"):
         config_value["echo"] = default_config["echo"]
     else:
         # Ensure LLM config exists with defaults
-            if "llm" not in config_value["echo"] or config_value["echo"]["llm"] is None:
-        config_value["echo"]["llm"] = default_config["echo"]["llm"]
+        if "llm" not in config_value["echo"] or config_value["echo"]["llm"] is None:
+            config_value["echo"]["llm"] = default_config["echo"]["llm"]
         
         # Ensure embedder config exists with defaults
         if "embedder" not in config_value["echo"] or config_value["echo"]["embedder"] is None:
@@ -179,7 +179,7 @@ async def update_llm_configuration(llm_config: LLMProvider, db: Session = Depend
     """Update only the LLM configuration."""
     current_config = get_config_from_db(db)
     
-        # Ensure echo key exists
+    # Ensure echo key exists
     if "echo" not in current_config:
         current_config["echo"] = {}
 
@@ -203,12 +203,12 @@ async def update_embedder_configuration(embedder_config: EmbedderProvider, db: S
     """Update only the Embedder configuration."""
     current_config = get_config_from_db(db)
     
-    # Ensure mem0 key exists
-    if "mem0" not in current_config:
-        current_config["mem0"] = {}
+    # Ensure echo key exists
+    if "echo" not in current_config:
+        current_config["echo"] = {}
     
     # Update the Embedder configuration
-    current_config["mem0"]["embedder"] = embedder_config.dict(exclude_none=True)
+    current_config["echo"]["embedder"] = embedder_config.dict(exclude_none=True)
     
     # Save the configuration to database
     save_config_to_db(db, current_config)
@@ -237,4 +237,4 @@ async def update_openmemory_configuration(openmemory_config: EchoConfig, db: Ses
     # Save the configuration to database
     save_config_to_db(db, current_config)
     reset_memory_client()
-    return current_config["openmemory"] 
+    return current_config["openmemory"]
